@@ -20,8 +20,8 @@ typedef struct
     int password;
 }Bank_Account;
 
-// Setters:
 
+// Setters:
 void set_Fname(Bank_Account* account, char* name);
 void set_address(Bank_Account* account, char* address);
 void set_NID(Bank_Account* account, short int nid);
@@ -44,6 +44,8 @@ short int get_guardianNID(Bank_Account* account);
 char get_accoutStatus(Bank_Account* account);
 int get_balance(Bank_Account* account);
 short int get_password(Bank_Account* account);
+
+
 // Rendom numbers for passowrds and Account IDs
 int returnRandoms(int lower, int upper);
 
@@ -54,6 +56,7 @@ int returnRandoms(int lower, int upper);
 
 int main(int argc, char *argv[])
 {
+    
 
 
     return 0;
@@ -67,7 +70,9 @@ int returnRandoms(int lower, int upper)
 
 Bank_Account* CreateAcc(){
     Bank_Account * acc = (Bank_Account*) malloc(sizeof(Bank_Account));
-
+    acc->bankAccID = returnRandoms(1000 ,9999);
+    acc->password = returnRandoms(1000 ,9999);
+    acc->accoutStatus = 'A';
     return acc;
 }
 
