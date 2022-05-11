@@ -50,6 +50,10 @@ char get_accoutStatus(Bank_Account* account);
 int get_balance(Bank_Account* account);
 short int get_password(Bank_Account* account);
 
+// Account functions:
+Bank_Account* initAcc();
+void createAccount(struct node *head);
+void storeNewAcc (struct node *head, Bank_Account* account);
 
 // Rendom numbers for passowrds and Account IDs
 int returnRandoms(int lower, int upper);
@@ -61,14 +65,24 @@ void display_AllSavedAccountsData(struct node *head);
 
 struct node* get_Head();
 
-struct node* searchAccNode(struct node* head, int BankID);
+struct node* searchAccNodeWithID(struct node* head, int BankID);
 
 
 
 
 int main(int argc, char *argv[])
 {
+    struct node *head;
+    
+    int bankID;
 
+    createAccount(head);
+    createAccount(head);
+    createAccount(head);
+
+    display_AllSavedAccountsData(head);
+
+    // searchAccNodeWithID(head, bankID);
 
 
     return 0;
@@ -80,18 +94,77 @@ int returnRandoms(int lower, int upper)
     return num;
 }
 
-Bank_Account* CreateAcc(){
-    
+Bank_Account* initAcc(){
     Bank_Account * acc = (Bank_Account*) malloc(sizeof(Bank_Account));
     acc->bankAccID = returnRandoms(10000 ,99999);
     acc->password = returnRandoms(1000 ,9999);
     acc->accoutStatus = 'A';
+    acc->age = 0;
+    acc->balance = 0;
+    acc->guardianNID=0;
+    acc->NID = 0;
     return acc;
+}
+
+void storeNewAcc (struct node *head, Bank_Account* account)
+{
+    //stroring at the begenning of the linked list
+    struct node *newNode;
+    // newNode = malloc(sizeof(struct node));
+    newNode->Acc = account;
+    newNode->next = head;
+    head = newNode;
+}
+
+void createAccount(struct node *head){
+    char name[30];
+    char address[30];
+    short int nid;
+    short int age;
+    char gname[30];
+    short int gnid;
+    int balance;
+    char status;
+
+    storeNewAcc (head, initAcc());
+
+    printf("\nEnter Full name: \n");
+    scanf("%s",name);
+    set_Fname(head->Acc,name);
+
+    printf("\nEnter Address: \n");
+    scanf("%s",address);
+    set_address(head->Acc,address);
+
+    printf("\nEnter National ID(14 Digits): \n");
+    scanf("%d",&nid);
+    set_NID(head->Acc,nid);
+
+    printf("\nEnter Age: \n");
+    scanf("%d",&age);
+    set_Age(head->Acc,age);
+
+    printf("\nEnter Guardian Name (If no Gardian Enter \"No\"): \n");
+    scanf("%s",gname);
+    set_guardianName(head->Acc,gname);
+
+    printf("\nEnter Guardian National ID (14 Digits): \n");
+    scanf("%d",&gnid);
+    set_guardianNID(head->Acc,gnid);
+
+    printf("\nUpdate Status? (Default is 'A' Active)(Enter 'R' for Restricted or 'C' for Closed) \n");
+    scanf("%c",status);
+    set_accoutStatus(head->Acc,status);
+
+    printf("\nEnter Balance: \n");
+    scanf("%d",&balance);
+    set_balance(head->Acc,balance);
 }
 
 void set_Fname(Bank_Account* account, char* name){
     
     account -> fName = strdup(name);
+    // account -> fName = name;
 }
 
 char* get_Fname(Bank_Account* account){
@@ -208,19 +281,10 @@ struct node* get_Head()
     int a;
 }
 
-void storeNewAcc (struct node *head, Bank_Account* account)
-{
-    //stroring at the begenning of the linked list
-    struct node *newNode;
-    // newNode = malloc(sizeof(struct node));
-    newNode->Acc = account;
-    newNode->next = head;
-    head = newNode;
-}
 
 /// Search for an Account node ..
 
-struct node* searchAccNode(struct node* head, int BankID) 
+struct node* searchAccNodeWithID(struct node* head, int BankID) 
 {
     struct node* current = head;
     while (current != NULL) {
