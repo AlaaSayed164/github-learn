@@ -76,6 +76,7 @@ int main(int argc, char *argv[])
     
     int bankID;
 
+
     createAccount(head);
     createAccount(head);
     createAccount(head);
@@ -87,6 +88,89 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+
+
+//#####################/////////////////////////////////////////////////
+// Testing main
+
+// int main(int argc, char *argv[])
+// {
+//     struct node *head = NULL;
+    
+//     int bankID;
+
+//     char name[30];
+//     char address[30];
+//     short int nid;
+//     short int age;
+//     char gname[30];
+//     short int gnid;
+//     int balance;
+//     char status;
+
+
+//     Bank_Account* Acc1 =  initAcc();
+
+//     Bank_Account* Acc2 =  initAcc();
+
+//     Bank_Account* Acc3 =  initAcc();
+
+//     printf("%p\n",&Acc1);
+//     printf("%p\n",&Acc2);
+//     printf("%p\n",&Acc3);
+
+
+//     printf("\nEnter Full name: \n");
+//     scanf("%s",name);
+//     set_Fname(Acc1,name);
+
+//     // strcpy(head->Acc->fName, name);
+// //////////////////
+//     printf("\nEnter Address: \n");
+//     scanf("%s",address);
+//     set_address(Acc1,address);
+
+//     printf("\nEnter National ID(14 Digits): \n");
+//     scanf("%d",&nid);
+//     set_NID(Acc1,nid);
+
+//     printf("\nEnter Age: \n");
+//     scanf("%d",&age);
+//     set_Age(Acc1,age);
+
+//     printf("\nEnter Guardian Name (If no Gardian Enter \"No\"): \n");
+//     scanf("%s",gname);
+//     set_guardianName(Acc1,gname);
+
+//     printf("\nEnter Guardian National ID (14 Digits): \n");
+//     scanf("%d",&gnid);
+//     set_guardianNID(Acc1,gnid);
+
+//     printf("\nUpdate Status? (Default is 'A' Active)(Enter 'R' for Restricted or 'C' for Closed) \n");
+//     scanf("%c",status);
+//     set_accoutStatus(Acc1,status);
+
+//     printf("\nEnter Balance: \n");
+//     scanf("%d",&balance);
+//     set_balance(Acc1,balance);
+
+//     // createAccount(head);
+//     // createAccount(head);
+//     // createAccount(head);
+
+//     // display_AllSavedAccountsData(head);
+
+//     // searchAccNodeWithID(head, bankID);
+//     printf("\nFull_Name,Full_Address,National_ID,Age,Bank_Account_ID,Guardian,Guardian_National_ID,Account_Status,Balance,Password\n");
+//     printf("%s,%s,%d,%d,%d,%s,%d,%c,%d,%d\n",Acc1->fName,Acc1->address,Acc1->NID,Acc1->age,Acc1->bankAccID,Acc1->guardianName,Acc1->guardianNID,Acc1->accoutStatus,Acc1->balance,Acc1->password);
+
+//     // printf("%s,%s,%d,%d,%d,%s,%d,%c,%d,%d\n",Acc2->fName,Acc2->address,Acc2->NID,Acc2->age,Acc2->bankAccID,Acc2->guardianName,Acc2->guardianNID,Acc2->accoutStatus,Acc2->balance,Acc2->password);
+
+//     // printf("%s,%s,%d,%d,%d,%s,%d,%c,%d,%d\n",Acc3->fName,Acc3->address,Acc3->NID,Acc3->age,Acc3->bankAccID,Acc3->guardianName,Acc3->guardianNID,Acc3->accoutStatus,Acc3->balance,Acc3->password);
+
+    
+//     return 0;
+// }
 
 int returnRandoms(int lower, int upper)
 {
@@ -125,18 +209,19 @@ void createAccount(struct node *head){
     short int gnid;
     int balance;
     char status;
-    Bank_Account * acc = initAcc();
+
+    // Bank_Account * acc = initAcc();
 
     printf("%p\n",&head);
     
-    storeNewAcc (head, acc);
+    storeNewAcc (head, initAcc());
 
     printf("%p\n",&head);
 
     printf("\nEnter Full name: \n");
     scanf("%s",name);
     set_Fname(head->Acc,name);
-    
+
     // strcpy(head->Acc->fName, name);
 //////////////////
     printf("\nEnter Address: \n");
@@ -166,6 +251,7 @@ void createAccount(struct node *head){
     printf("\nEnter Balance: \n");
     scanf("%d",&balance);
     set_balance(head->Acc,balance);
+
 }
 
 void set_Fname(Bank_Account* account, char* name){
