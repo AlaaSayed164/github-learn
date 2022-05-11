@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX_SIZE        100
-
+ //commint
 int Welcome_fn()
     {
 		int choice;
