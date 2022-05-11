@@ -72,7 +72,7 @@ struct node* searchAccNodeWithID(struct node* head, int BankID);
 
 int main(int argc, char *argv[])
 {
-    struct node *head;
+    struct node *head = NULL;
     
     int bankID;
 
@@ -125,13 +125,20 @@ void createAccount(struct node *head){
     short int gnid;
     int balance;
     char status;
+    Bank_Account * acc = initAcc();
 
-    storeNewAcc (head, initAcc());
+    printf("%p\n",&head);
+    
+    storeNewAcc (head, acc);
+
+    printf("%p\n",&head);
 
     printf("\nEnter Full name: \n");
     scanf("%s",name);
     set_Fname(head->Acc,name);
-
+    
+    // strcpy(head->Acc->fName, name);
+//////////////////
     printf("\nEnter Address: \n");
     scanf("%s",address);
     set_address(head->Acc,address);
@@ -163,8 +170,9 @@ void createAccount(struct node *head){
 
 void set_Fname(Bank_Account* account, char* name){
     
-    account -> fName = strdup(name);
+    // account -> fName = strdup(name);
     // account -> fName = name;
+    strcpy(account -> fName, name);
 }
 
 char* get_Fname(Bank_Account* account){
